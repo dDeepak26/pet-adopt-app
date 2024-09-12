@@ -12,7 +12,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="home" // Removed the leading "/"
+        name="home"
         options={{
           headerShown: false,
           title: "Home",
@@ -22,7 +22,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="favorite" // Adjusted the name
+        name="favorite"
         options={{
           title: "Favorite",
           tabBarIcon: ({ color }) => (
@@ -31,7 +31,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="inbox" // Adjusted the name
+        name="inbox"
         options={{
           title: "Inbox",
           tabBarIcon: ({ color }) => (
@@ -40,7 +40,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile" // Adjusted the name
+        name="profile"
         options={{
           title: "Profile",
           tabBarIcon: ({ color }) => (
