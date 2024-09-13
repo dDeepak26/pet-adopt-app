@@ -22,66 +22,38 @@ export default function Category({ category }) {
   // Used to Get Category list from DB
   const GetCategories = async () => {
     setCategoryList([]);
-    const snapshort = await getDocs(collection(db, "Category"));
-    snapshort.forEach((doc) => {
-      // console.log(doc.data());
-      setCategoryList((categoryList) => [...categoryList, doc.data()]);
-    });
+    const snapshot = await getDocs(collection(db, "Category"));
+    const categories = snapshot.docs.map((doc) => doc.data());
+    setCategoryList(categories);
   };
 
   return (
-    <View
-      style={{
-        marginTop: 20,
-      }}
-    >
-      <Text
-        style={{
-          fontFamily: "outfit-medium",
-          fontSize: 20,
-        }}
-      >
-        Category
-      </Text>
-
+    <View style={styles.container}>
+      <Text style={styles.title}>Category</Text>
       <FlatList
         data={categoryList}
         numColumns={4}
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
               setSelectedCategory(item.name);
               category(item.name);
             }}
-            style={{
-              flex: 1,
-            }}
+            style={styles.itemContainer}
           >
             <View
               style={[
-                styles.container,
-                selectedCategory == item.name &&
+                styles.categoryContainer,
+                selectedCategory === item.name &&
                   styles.selectedCategoryContainer,
               ]}
             >
-              <Image
-                source={{ uri: item?.imageUrl }}
-                style={{
-                  width: 40,
-                  height: 40,
-                }}
-              />
+              <Image source={{ uri: item?.imageUrl }} style={styles.image} />
             </View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontFamily: "outfit-regular",
-              }}
-            >
-              {item?.name}
-            </Text>
+            <Text style={styles.itemText}>{item?.name}</Text>
           </TouchableOpacity>
         )}
+        keyExtractor={(item) => item.name} // Ensure each item has a unique key
       />
     </View>
   );
@@ -89,16 +61,35 @@ export default function Category({ category }) {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
+  },
+  title: {
+    fontFamily: "outfit-medium",
+    fontSize: 20,
+  },
+  itemContainer: {
+    flex: 1,
+    alignItems: "center",
+    margin: 5,
+  },
+  categoryContainer: {
     backgroundColor: Colors.LIGHT_PRIMARY,
     padding: 15,
     alignItems: "center",
     borderWidth: 1,
     borderRadius: 15,
     borderColor: Colors.PRIMARY,
-    margin: 5,
   },
   selectedCategoryContainer: {
     backgroundColor: Colors.SECONDARY,
     borderColor: Colors.SECONDARY,
+  },
+  image: {
+    width: 40,
+    height: 40,
+  },
+  itemText: {
+    textAlign: "center",
+    fontFamily: "outfit-regular",
   },
 });

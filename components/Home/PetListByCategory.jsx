@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import Category from "./Category";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -18,26 +18,34 @@ export default function PetListByCategory() {
     setLoader(true);
     setPetList([]);
     const q = query(collection(db, "Pets"), where("category", "==", category));
-    const querySnapshort = await getDocs(q);
+    const querySnapshot = await getDocs(q);
 
-    querySnapshort.forEach((doc) => {
-      // console.log(doc.data());
-      setPetList((petList) => [...petList, doc.data()]);
-    });
+    const pets = querySnapshot.docs.map((doc) => doc.data());
+    setPetList(pets);
     setLoader(false);
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Category category={(value) => GetPetList(value)} />
       <FlatList
         data={petList}
-        style={{ marginTop: 10 }}
-        horizontal={true}
+        style={styles.flatList}
+        horizontal
         refreshing={loader}
         onRefresh={() => GetPetList("Dog")}
-        renderItem={({ item, index }) => <PetListItem pet={item} />}
+        renderItem={({ item }) => <PetListItem pet={item} />}
+        keyExtractor={(item) => item.id} // Ensure each item has a unique key
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  flatList: {
+    marginTop: 10,
+  },
+});

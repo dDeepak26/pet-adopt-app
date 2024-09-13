@@ -1,5 +1,12 @@
 import React, { useCallback } from "react";
-import { View, Text, Image, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 import Colors from "./../../constants/Colors";
 import * as WebBrowser from "expo-web-browser";
 import { useOAuth } from "@clerk/clerk-expo";
@@ -29,6 +36,7 @@ export default function LoginScreen() {
         });
 
       if (createdSessionId) {
+        // Handle session creation
       } else {
         // Use signIn or signUp for next steps such as MFA
       }
@@ -38,68 +46,61 @@ export default function LoginScreen() {
   }, []);
 
   return (
-    <ScrollView
-      style={{
-        backgroundColor: Colors.WHITE,
-        height: "100%",
-      }}
-    >
-      <View>
+    <View style={styles.container}>
+      <ScrollView>
         <Image
           source={require("./../../assets/images/login.png")}
-          style={{
-            width: "100%",
-            height: 500,
-          }}
+          style={styles.image}
         />
-        <View
-          style={{
-            padding: 20,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "outfit-bold",
-              fontSize: 30,
-              textAlign: "center",
-            }}
-          >
-            Ready to make a new friend?
-          </Text>
-          <Text
-            style={{
-              fontFamily: "outfit-regular",
-              fontSize: 18,
-              textAlign: "center",
-              color: Colors.GRAY,
-            }}
-          >
+        <View style={styles.content}>
+          <Text style={styles.title}>Ready to make a new friend?</Text>
+          <Text style={styles.subtitle}>
             Let's adopt the pet which you like and make there life happy again
           </Text>
 
-          <Pressable
-            onPress={onPress}
-            style={{
-              padding: 14,
-              marginTop: 100,
-              backgroundColor: Colors.PRIMARY,
-              width: "100%",
-              borderRadius: 14,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "outfit-medium",
-                textAlign: "center",
-              }}
-            >
-              Get Started
-            </Text>
+          <Pressable onPress={onPress} style={styles.button}>
+            <Text style={styles.buttonText}>Get Started</Text>
           </Pressable>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.WHITE,
+    height: "100%",
+  },
+  image: {
+    width: "100%",
+    height: 500,
+  },
+  content: {
+    padding: 20,
+    display: "flex",
+    alignItems: "center",
+  },
+  title: {
+    fontFamily: "outfit-bold",
+    fontSize: 30,
+    textAlign: "center",
+  },
+  subtitle: {
+    fontFamily: "outfit-regular",
+    fontSize: 18,
+    textAlign: "center",
+    color: Colors.GRAY,
+  },
+  button: {
+    padding: 14,
+    marginTop: 100,
+    backgroundColor: Colors.PRIMARY,
+    width: "100%",
+    borderRadius: 14,
+  },
+  buttonText: {
+    fontFamily: "outfit-medium",
+    textAlign: "center",
+  },
+});
