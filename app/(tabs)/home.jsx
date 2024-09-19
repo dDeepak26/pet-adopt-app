@@ -35,7 +35,6 @@ export default function Home() {
         onPress={() =>
           router.push({
             pathname: "/add-new-pet",
-            // params: pet,
           })
         }
         style={styles.addNewPetContainer}
@@ -43,10 +42,6 @@ export default function Home() {
         <MaterialIcons name="pets" size={24} color={Colors.PRIMARY} />
         <Text style={styles.addNewPetTxt}>Add New Pet</Text>
       </TouchableOpacity>
-      {/*      <Link href={"/add-new-pet"} style={styles.addNewPetContainer}>
-        <MaterialIcons name="pets" size={24} color={Colors.PRIMARY} />
-        <Text style={styles.addNewPetTxt}>Add New Pet</Text>
-      </Link> */}
     </ScrollView>
   );
 }

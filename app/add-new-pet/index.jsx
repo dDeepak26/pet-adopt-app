@@ -90,11 +90,11 @@ export default function AddNewPet() {
 
     uploadBytes(storageRef, blobImage)
       .then((snapshot) => {
-        console.log("Image Uploaded");
+        // console.log("Image Uploaded");
       })
       .then((res) => {
         getDownloadURL(storageRef).then(async (downloadUrl) => {
-          console.log("Image Url", downloadUrl);
+          // console.log("Image Url", downloadUrl);
           saveFormData(downloadUrl);
         });
       });
@@ -105,8 +105,8 @@ export default function AddNewPet() {
     await setDoc(doc(db, "Pets", docId), {
       ...formData,
       imageUrl: imageUrl,
-      username: user?.fullName,
-      email: user?.primaryEmailAddress?.emailAddress,
+      userName: user?.fullName,
+      userEmail: user?.primaryEmailAddress?.emailAddress,
       userImage: user?.imageUrl,
       id: docId,
     });
