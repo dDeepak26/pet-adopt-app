@@ -17,7 +17,7 @@ export default function MarkFav({ pet, color = "black" }) {
   const GetFav = async () => {
     try {
       const result = await Shared.GetFavList(user);
-      console.log("Fetched favorites:", result);
+      // console.log("Fetched favorites:", result);
       setFavList(result?.favorites || []);
     } catch (error) {
       console.error("Error fetching favorites:", error);
@@ -30,7 +30,7 @@ export default function MarkFav({ pet, color = "black" }) {
       if (!favResult.includes(pet.id)) {
         favResult.push(pet.id);
       }
-      console.log("Updating favorites with:", favResult);
+      // console.log("Updating favorites with:", favResult);
       await Shared.UpdateFav(user, favResult);
       GetFav(); // Refresh the favList
     } catch (error) {
@@ -41,7 +41,7 @@ export default function MarkFav({ pet, color = "black" }) {
   const RemoveFromFav = async () => {
     try {
       const favResult = favList.filter((id) => id !== pet.id); // Remove pet.id from the list
-      console.log("Updating favorites with:", favResult);
+      // console.log("Updating favorites with:", favResult);
       await Shared.UpdateFav(user, favResult);
       GetFav(); // Refresh the favList
     } catch (error) {
