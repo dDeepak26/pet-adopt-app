@@ -34,6 +34,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="inbox"
         options={{
+          headerShown: false,
           title: "Inbox",
           tabBarIcon: ({ color }) => (
             <Ionicons name="chatbubbles" size={24} color={color} />
@@ -43,6 +44,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
+          headerShown: false,
           title: "Profile",
           tabBarIcon: ({ color }) => (
             <Ionicons name="person" size={24} color={color} />
