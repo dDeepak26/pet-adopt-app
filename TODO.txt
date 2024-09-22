@@ -1,0 +1,9 @@
+Major:
+    logedIn user remembering and redirecting to home page
+    Pet Detail -> Image not displaying due to firebase image url incorrect 400 error
+
+Minor:
+    using font before its being load
+    home page -> scrollable view warning
+    favorite -> card styling 
+    inbox chat -> name of the user

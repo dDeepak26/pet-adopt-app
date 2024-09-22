@@ -5,4 +5,5 @@ export default {
   WHITE: "#fff",
   SECONDARY: "#4faaff",
   LIGHT_PRIMARY: "#fff1c9",
+  RED: "#f03949",
 };

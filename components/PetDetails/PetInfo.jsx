@@ -4,6 +4,8 @@ import Colors from "../../constants/Colors";
 import MarkFav from "../MarkFav";
 
 export default function PetInfo({ pet }) {
+  console.log("Pet Image url from useLocalSearchParams: " + pet.imageUrl);
+
   return (
     <View>
       <Image source={{ uri: pet?.imageUrl }} style={styles.image} />

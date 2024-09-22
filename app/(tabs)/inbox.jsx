@@ -46,7 +46,7 @@ export default function Inbox() {
       };
       list.push(result);
     });
-    console.log(list);
+    // console.log(list);
     return list;
   };
   return (

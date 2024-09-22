@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
+  ScrollView,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAuth, useUser } from "@clerk/clerk-expo";
@@ -28,18 +29,24 @@ export default function Profile() {
     },
     {
       id: 2,
+      name: "My Post",
+      icon: "bookmark",
+      path: "/user-post",
+    },
+    {
+      id: 3,
       name: "Favorites",
       icon: "heart",
       path: "/(tabs)/favorite",
     },
     {
-      id: 3,
+      id: 4,
       name: "Inbox",
       icon: "chatbubble",
       path: "/(tabs)/inbox",
     },
     {
-      id: 4,
+      id: 5,
       name: "Logout",
       icon: "exit",
       path: "logout",
@@ -84,39 +91,44 @@ export default function Profile() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.profileHeader}>Profile</Text>
-      <View style={styles.userContainer}>
-        <Image source={{ uri: user?.imageUrl }} style={styles.userImage} />
-        <Text style={styles.userName}>{user?.fullName}</Text>
-        <Text style={styles.userEmail}>
-          {user?.primaryEmailAddress?.emailAddress}
-        </Text>
+    <ScrollView style={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text style={styles.profileHeader}>Profile</Text>
+        <View style={styles.userContainer}>
+          <Image source={{ uri: user?.imageUrl }} style={styles.userImage} />
+          <Text style={styles.userName}>{user?.fullName}</Text>
+          <Text style={styles.userEmail}>
+            {user?.primaryEmailAddress?.emailAddress}
+          </Text>
+        </View>
+        <FlatList
+          data={Menu}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => onPressMenu(item)}
+              style={styles.navBar}
+              disabled={isLoading}
+            >
+              <Ionicons
+                name={item.icon}
+                size={30}
+                color={Colors.PRIMARY}
+                style={styles.iconStyle}
+              />
+              <Text style={styles.navBarText}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.id.toString()}
+        />
       </View>
-      <FlatList
-        data={Menu}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => onPressMenu(item)}
-            style={styles.navBar}
-            disabled={isLoading}
-          >
-            <Ionicons
-              name={item.icon}
-              size={30}
-              color={Colors.PRIMARY}
-              style={styles.iconStyle}
-            />
-            <Text style={styles.navBarText}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+  },
   container: {
     padding: 20,
     marginTop: 20,
