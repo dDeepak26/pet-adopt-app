@@ -12,6 +12,7 @@ web-build/
 .env
 *.local
 .txt
+eas.json
 
 # macOS
 .DS_Store
