@@ -1,6 +1,5 @@
 Major:
     logedIn user remembering and redirecting to home page
-    Pet Detail -> Image not displaying due to firebase image url incorrect 400 error
 
 Minor:
     using font before its being load

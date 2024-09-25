@@ -1,14 +1,37 @@
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import React from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../config/FirebaseConfig";
 import Colors from "../../constants/Colors";
 import MarkFav from "../MarkFav";
 
 export default function PetInfo({ pet }) {
-  console.log("Pet Image url from useLocalSearchParams: " + pet.imageUrl);
+  const [imageUrl, setImageUrl] = useState(pet.imageUrl);
+
+  useEffect(() => {
+    const fetchPetImageUrl = async () => {
+      try {
+        const petDocRef = doc(db, "Pets", pet.id);
+        const petDocSnap = await getDoc(petDocRef);
+
+        if (petDocSnap.exists()) {
+          const petData = petDocSnap.data();
+          // console.log("Fetched imageUrl from Firestore:", petData.imageUrl);
+          setImageUrl(petData.imageUrl);
+        } else {
+          console.log("No such pet document!");
+        }
+      } catch (error) {
+        console.error("Error fetching pet data:", error);
+      }
+    };
+
+    fetchPetImageUrl();
+  }, [pet.id]);
 
   return (
     <View>
-      <Image source={{ uri: pet?.imageUrl }} style={styles.image} />
+      <Image source={{ uri: imageUrl }} style={styles.image} />
       <View style={styles.infoContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.nameText}>{pet?.name}</Text>

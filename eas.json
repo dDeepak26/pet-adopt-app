@@ -1,0 +1,28 @@
+{
+  "cli": {
+    "appVersionSource": "local"
+  },
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_ZnJlZS1zdHVyZ2Vvbi00NC5jbGVyay5hY2NvdW50cy5kZXYk",
+        "CLERK_SECRET_KEY": "sk_test_7NI1Nt3y048Cts92jaUUiXaRZI3rWXxjYZjGUuSMu6",
+        "EXPO_PUBLIC_FIREBASE_API_KEY": "AIzaSyBSFnM8Mive8i9D3_a0hEotWwEXiyvN67I"
+      },
+      "autoIncrement": true
+    }
+  }
+}

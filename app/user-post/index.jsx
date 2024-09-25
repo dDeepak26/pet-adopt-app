@@ -45,7 +45,7 @@ export default function UserPost() {
     const querySnapshort = await getDocs(q);
 
     querySnapshort.forEach((doc) => {
-      console.log("User Post: " + doc.data());
+      // console.log("User Post: " + doc.data());
       setUserPostList((prev) => [...prev, doc.data()]);
     });
     setLoader(false);

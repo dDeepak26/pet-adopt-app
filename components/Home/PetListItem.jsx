@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import MarkFav from "../MarkFav";
 
 export default function PetListItem({ pet }) {
-  console.log("Pet Image Url from firestore: " + pet.imageUrl);
+  // console.log("Pet Image Url from firestore: " + pet.imageUrl);
   const router = useRouter();
 
   return (

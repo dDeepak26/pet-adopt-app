@@ -25,7 +25,10 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["INTERNET"]
+      "permissions": [
+        "INTERNET"
+      ],
+      "package": "com.deepak_durgam.petadoptapp"
     },
     "web": {
       "bundler": "metro",
