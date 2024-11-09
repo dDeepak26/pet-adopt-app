@@ -29,7 +29,7 @@ export default function UserPost() {
 
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: "User Post",
+      headerTitle: "Your Posts",
     });
     user && GetUserPost();
   }, [user]);
@@ -78,7 +78,7 @@ export default function UserPost() {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.headerTxt}>UserPost</Text>
+      <Text style={styles.headerTxt}>Your Posts</Text>
       <FlatList
         data={userPostList}
         numColumns={2}

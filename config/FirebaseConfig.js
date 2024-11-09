@@ -10,17 +10,17 @@ import { getStorage } from "firebase/storage";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "pet-adopt-app-ef398.firebaseapp.com",
-  projectId: "pet-adopt-app-ef398",
-  storageBucket: "pet-adopt-app-ef398.appspot.com",
-  messagingSenderId: "1085919702777",
-  appId: "1:1085919702777:web:f99887514ef850daef3c28",
-  measurementId: "G-R4CX5W92GS",
+  authDomain: process.env.EXPO_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_APP_ID,
+  measurementId: process.env.EXPO_PUBLIC_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// importing the collection from firebase, do'nt need to provide db name if uisng the default db other wise mention it
+// importing the collection from firebase, do'nt need to provide db name if using the default db other wise mention it
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 // const analytics = getAnalytics(app);
